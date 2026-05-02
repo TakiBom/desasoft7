@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap');
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 30px;
+  border: 2px solid #277599;
+  position: relative;
+  overflow: hidden;
+  width: 900px;
+  max-width: 100%;
+  min-height: 500px;
+  flex: 1;
+}
+
+.container p {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  margin: 20px 0;
+}
+
+.container span {
+  font-size: 12px;
+}
+
+.container a {
+  color: #333;
+  font-size: 13px;
+  text-decoration: none;
+  margin: 15px 0 10px;
+}
+
+.container button {
+  background-color: #38aade;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px 45px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.container button.hidden {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+.container form {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 60px;
+  height: 100%;
+}
+
+.container input {
+  background-color: #eee;
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-size: 13px;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.container.active .sign-in {
+  transform: translateX(100%);
+}
+
+.sign-up {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.active .sign-up {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+.toggle-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.6s ease-in-out;
+  z-index: 1000;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.container.active .toggle-container {
+  transform: translateX(-100%);
+}
+.toggle {
+    background-color: #512da8;
+    height: 100%;
+    /* Quitamos las rayas y dejamos un color sólido o un degradado suave */
+    background: linear-gradient(135deg, #2a94c6, #38aade);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+    overflow: hidden; /* Importante para que las burbujas no se salgan */
+}
+
+/* Creamos la base de las burbujas usando pseudoelementos */
+.toggle::before,
+.toggle::after {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15); /* Color de la burbuja (blanco transparente) */
+    border-radius: 50%;
+    z-index: -1; /* Para que queden detrás del texto */
+}
+
+/* Burbuja 1 */
+.toggle::before {
+    width: 150px;
+    height: 150px;
+    top: 10%;
+    left: 10%;
+    animation: floating-bubbles 8s infinite alternate ease-in-out;
+}
+
+/* Burbuja 2 */
+.toggle::after {
+    width: 250px;
+    height: 250px;
+    bottom: -50px;
+    right: 20%;
+    animation: floating-bubbles 12s infinite alternate-reverse ease-in-out;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Animación de movimiento */
+@keyframes floating-bubbles {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    100% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* Burbuja extra 1 */
+.bubble:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    top: 60%;
+    left: 80%;
+    animation: floating-bubbles 10s infinite linear;
+}
+
+/* Burbuja extra 2 */
+.bubble:nth-child(2) {
+    width: 120px;
+    height: 120px;
+    top: 20%;
+    right: 30%;
+    animation: floating-bubbles 15s infinite linear;
+}
+
+.container.active .toggle {
+  transform: translateX(50%);
+}
+
+.toggle-panel {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 30px;
+  text-align: center;
+  top: 0;
+  transform: translateX(0);
+  transition: all 0.6s ease-in-out;
+}
+
+.toggle-left {
+  transform: translateX(-200%);
+}
+
+.container.active .toggle-left {
+  transform: translateX(0);
+}
+
+.toggle-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.active .toggle-right {
+  transform: translateX(200%);
+}
+/* === INPUT GROUP PARA EL ICONO DE OJO === */
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  padding-right: 40px; /* espacio para el ojo */
+}
+
+.input-group i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: rgb(73, 73, 73);
+  font-size: 18px;
+}
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+  
+  /* --- AÑADE ESTO PARA LA SILUETA NEGRA --- */
+    /* Sintaxis: drop-shadow(0 0 [grosor] [color]) */
+    filter: drop-shadow(1px 0 0 #277599) 
+            drop-shadow(-20px 0 0 #277599) 
+            drop-shadow(0 2px 0 #277599) 
+            drop-shadow(0 -2px 0 #277599);
+}
